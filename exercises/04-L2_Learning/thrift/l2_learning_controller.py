@@ -55,7 +55,9 @@ class L2Controller(object):
         for mac_addr, ingress_port in  learning_data:
             print("mac: %012X ingress_port: %s " % (mac_addr, ingress_port))
             #TODO: Add an entry to smac
+            self.controller.table_add("smac", "NoAction", [str(mac_addr)])
             #TODO: Add an entry to dmac
+            self.controller.table_add("dmac", "forward", [str(mac_addr)], [str(ingress_port)])
             #HINT: table_add(table_name, action_name, list of matches, list of action parameters)
 
     def unpack_digest(self, msg, num_samples):

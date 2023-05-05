@@ -5,7 +5,7 @@ net = NetworkAPI()
 # Network general options
 net.setLogLevel('info')
 net.setCompiler(p4rt=True)
-net.execScript('python controller.py', reboot=True)
+net.execScript('python3 controller.py', reboot=True)
 
 # Network definition
 net.addP4RuntimeSwitch('s1')

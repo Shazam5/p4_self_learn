@@ -25,7 +25,7 @@ header cpu_t {
 }
 
 struct metadata {
-
+    @field_list(1)
     bit<9> ingress_port;
     /* empty */
 }
@@ -76,7 +76,8 @@ control MyIngress(inout headers hdr,
 
     action mac_learn() {
         meta.ingress_port = standard_metadata.ingress_port;
-        clone3(CloneType.I2E, 100, meta);
+        //clone3(CloneType.I2E, 100, meta);
+        clone_preserving_field_list(CloneType.I2E, 100, 1);
     }
 
     table smac {
